@@ -3,8 +3,8 @@ var pulseInterval;
 $(document).ready(function(e) {
   
   pulseInterval = setInterval(pulseAnimation,100);
-      
-  });
+   
+});
 
 var frame = 1;
   
