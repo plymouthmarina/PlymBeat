@@ -1,14 +1,12 @@
 var express       = require('express');
-var mongoose      = require('mongoose');
+
 
 var port = process.env.PORT || 8080;
 
 var app           = express();
 var server        = app.listen(port, function () { console.log("Go to " + port); });
 var io            = require('socket.io').listen(server);
-
-
-// mongoose.connect('mongodb://localhost/plymbeat');
+var db            = require('mongojs').connect('http://localhost/plymbeat', ['topics']);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -27,6 +25,8 @@ io.on('connection', function (socket) {
   });
 
   socket.on('question', function(data) {
+    console.log(data);
+    db.topics.save(data);
     socket.emit('question',{ question: data.question });
     console.log("question", data.question );
   });
@@ -37,15 +37,3 @@ io.on('connection', function (socket) {
   });
 
 });
-
-
-var Schema = mongoose.Schema;
-
-var messageSchema = new Schema({
-  message: String,
-  timestamp: Date
-});
-
-var Message = mongoose.model('Message', messageSchema);
-
-module.exports = Message;

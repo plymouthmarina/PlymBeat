@@ -26,7 +26,7 @@ socket.on('answer', function (data) {
 socket.on('question', function (data) {
   // stuff that happends after someone gives a new question
   console.log("new question", data);
-  current.question = data.question;
+  current = data;
   displayQuestion();
 
 });
@@ -48,8 +48,9 @@ socket.on('question', function (data) {
   $("#submitAnswer").click(function(){
     // $("ol").append("<li>Appended Answer</li>");
     
-    var answer = $('#currentAnswer').val();
-    socket.emit('answer', { answer: answer });
+    current.answer = $('#currentAnswer').val();
+    socket.emit('answer', current );
+    current = {};
   });
 
 });
