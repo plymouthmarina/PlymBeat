@@ -17,11 +17,23 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('*', function (req, res) {
   res.render('pages/index');
-  // res.send('hello!');
 });
 
 io.on('connection', function (socket) {
   console.log('a user connected');
+
+  socket.on('disconnect', function() {
+    console.log('a user disconnected');
+  });
+
+  socket.on('question', function(question) {
+    socket.emit('question',{ question: question });
+  });
+
+  socket.on('answer', function(answer) {
+    socket.emit('answer', { answer: answer});
+  });
+
 });
 
 
