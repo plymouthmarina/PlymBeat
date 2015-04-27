@@ -45,3 +45,7 @@ p #main{
     width:1253px;
 	height:269px;
 }
+
+#history{
+	min-height:300px; 
+}
