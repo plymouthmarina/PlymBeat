@@ -11,12 +11,25 @@
       <div id="main">
           <p>Ask and answer questions to keep the heart of the city alive.</p>
             <p id="currentQuestion">Where is the best place to go out on a Wednesday?</p>
+            <input type="text" name="question" id="questionInput">
+            <button id="submitQuestion">Ask This question</button>
             <form>
                 <textarea type="text" name="answer" placeholder="Enter your answer to the current question" id="currentAnswer"></textarea>    <br>
             </form> 
+            <button id="submitAnswer">Give Answer</button>
         </div>        
     <div>
     <div id="pulseAnimation">
+    </div>
+
+
+    <div class="history">
+      <div class="topic">
+        <ul>
+          <li>Question: Why are you here?</li>
+          <li>Answer: 42</li>
+        </ul>
+      </div>
     </div>
     
 </body>

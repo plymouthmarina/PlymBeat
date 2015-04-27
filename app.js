@@ -26,12 +26,14 @@ io.on('connection', function (socket) {
     console.log('a user disconnected');
   });
 
-  socket.on('question', function(question) {
-    socket.emit('question',{ question: question });
+  socket.on('question', function(data) {
+    socket.emit('question',{ question: data.question });
+    console.log("question", data.question );
   });
 
   socket.on('answer', function(answer) {
     socket.emit('answer', { answer: answer});
+    console.log("answer:", answer);
   });
 
 });
