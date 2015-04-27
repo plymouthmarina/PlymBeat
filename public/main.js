@@ -3,6 +3,9 @@ var pulseInterval;
 $(document).ready(function(e) {
   
   pulseInterval = setInterval(pulseAnimation,100);
+  	$("#submitAnswer").click(function(){
+	  $("ol").append("<li>Appended Answer</li>");
+  });
    
 });
 
