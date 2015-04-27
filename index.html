@@ -15,19 +15,19 @@
 
 	$(document).ready(function(e) {
 		
-		pulseInterval = setInterval(pulseAnimation,200);
+		pulseInterval = setInterval(pulseAnimation,100);
         
     });
 	
 	var frame = 1;
-
+    
 	function pulseAnimation(){
 		 
 		var top = 269 * frame;
 		   
 		$('#pulseAnimation').css('backgroundPosition', '0px ' + '-'+ top + 'px');
 		 
-		if (frame < 9){
+		if (frame < 19){
 		   frame++;
 		}
 		else
