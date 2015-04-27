@@ -1,58 +1,14 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Urban API</title>
-<script src="jquery-1.10.2.js"> </script>
+  <meta charset="utf-8">
+  <title>Urban API</title>
+  <script src="jquery-1.10.2.js"> </script>
 
-<link href="base.css" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
-
-<script>
-
-	var pulseInterval;
-
-	$(document).ready(function(e) {
-		
-		pulseInterval = setInterval(pulseAnimation,100);
-        
-    });
-	
-	var frame = 1;
-    
-	function pulseAnimation(){
-		 
-		var top = 269 * frame;
-		   
-		$('#pulseAnimation').css('backgroundPosition', '0px ' + '-'+ top + 'px');
-		 
-		if (frame < 19){
-		   frame++;
-		}
-		else
-		{
-		   frame = 1;	
-		}
-	}	
-	/*
-	function pulseAnimation(){
-		 
-    var left = 128 * frame;
-       
-	$('#pulseAnimation').css('backgroundPosition','-'+left+'px 0px');
-	 
-    if (frame < 9){
-	   frame++;
-	}
-	else
-	{
-	   frame = 1;	
-	} */
-
-	
-</script>
-
+  <link href="base.css" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+  <script src="main.js"></script>
 </head>
 
 <body>
