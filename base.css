@@ -1,0 +1,47 @@
+#wrapper{
+	position:relative;
+	width: 100%;
+	max-width: 960px;
+	margin:0 auto;
+	overflow:hidden;
+	min-height:540px;
+}
+
+body {
+	background-color:#303030;
+	font-family: 'Roboto', sans-serif;
+}
+
+#main{
+	margin-top:150px;
+	font-size:20px;
+	color:#FFFFFF;
+	text-align:center;
+}
+
+p #main{
+	margin:0 auto;
+}
+
+#currentQuestion{
+	margin:50px 0 auto;
+	font-size:40px;
+}
+
+#currentAnswer{
+	width:400px;
+	height:30px;
+	margin-top:50px;
+}
+
+#logo{
+	position:relative;
+	top:50px;
+	left:30px;
+}
+
+#pulseAnimation{
+	background-image:url(pulse_sample2.jpg);  
+    width:1253px;
+	height:269px;
+}

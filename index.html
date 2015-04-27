@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Urban API</title>
+<script src="jquery-1.10.2.js"> </script>
+
+<link href="base.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+
+<script>
+
+	var pulseInterval;
+
+	$(document).ready(function(e) {
+		
+		pulseInterval = setInterval(pulseAnimation,200);
+        
+    });
+	
+	var frame = 1;
+
+	function pulseAnimation(){
+		 
+		var top = 269 * frame;
+		   
+		$('#pulseAnimation').css('backgroundPosition', '0px ' + '-'+ top + 'px');
+		 
+		if (frame < 9){
+		   frame++;
+		}
+		else
+		{
+		   frame = 1;	
+		}
+	}	
+	/*
+	function pulseAnimation(){
+		 
+    var left = 128 * frame;
+       
+	$('#pulseAnimation').css('backgroundPosition','-'+left+'px 0px');
+	 
+    if (frame < 9){
+	   frame++;
+	}
+	else
+	{
+	   frame = 1;	
+	} */
+
+	
+</script>
+
+</head>
+
+<body>
+
+	<div id="wrapper">
+    	<img src="logo.jpg" id="logo">
+    	<div id="main">
+        	<p>Ask and answer questions to keep the heart of the city alive.</p>
+            <p id="currentQuestion">Where is the best place to go out on a Wednesday?</p>
+            <form>
+                <textarea type="text" name="answer" placeholder="Enter your answer to the current question" id="currentAnswer"></textarea>		<br>
+                <input type="submit" value="Submit">
+            </form> 
+        </div>        
+    <div>
+    <div id="pulseAnimation">
+    </div>
+    
+</body>
+</html>
