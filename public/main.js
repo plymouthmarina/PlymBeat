@@ -1,9 +1,23 @@
+/*****************************************************
+********      Websocket.io
+*****************************************************/
+
+
+var socket = io.connect();
+
+
+
+/*****************************************************
+********      GRAPH ANIMATION
+*****************************************************/
+
 var pulseInterval;
 
 $(document).ready(function(e) {
   
   pulseInterval = setInterval(pulseAnimation,100);
-  	$("#submitAnswer").click(function(){
+
+	$("#submitAnswer").click(function(){
 	  $("ol").append("<li>Appended Answer</li>");
   });
    
