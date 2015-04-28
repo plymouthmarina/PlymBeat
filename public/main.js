@@ -25,7 +25,25 @@ function displayQuestion () {
 socket.on('answer', function (data) {
   // stuff that happens after someone gives an answer
   console.log("new answer", data);
-  $('#history').append('<div id="history2"><div id="historyQuestion"><p class = "capital">Q</p><p>' + data.answer.question + '</p></div><div id="historyAnswer"><p  class = "capital">A</p><p>' + data.answer.answer + '</p></div></div>');
+
+  // reset current question
+  current = {};
+  // -> hide current answer
+  // -> show question input field
+
+  // -> hide answer input field
+
+  $('#history').append(
+    '<div id="history2">' + 
+      '<div id="historyQuestion">' + 
+        '<p class = "capital">Q</p>' + 
+        '<p>' + data.answer.question + '</p>' + 
+      '</div>' +
+      '<div id="historyAnswer">' +
+        '<p  class = "capital">A</p>' +
+        '<p>' + data.answer.answer + '</p>' +
+      '</div>' +
+    '</div>');
 });
 
 socket.on('question', function (data) {
@@ -35,6 +53,10 @@ socket.on('question', function (data) {
   current.question = data.question;
   current.id = data.id;
   current.timestamp = data.timestamp;
+
+  // -> show new question
+  // -> hide question input
+  // -> show answer input
 
 
   // current = data;
@@ -65,6 +87,7 @@ socket.on('question', function (data) {
   });
 
 });
+
 /*
 var frame = 1;
   
