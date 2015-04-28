@@ -76,22 +76,4 @@ function pulseAnimation(){
   
   frame = (frame + 1) % 19;
 } 
-<<<<<<< HEAD
 */
-/*
-function pulseAnimation(){
-   
-  var left = 128 * frame;
-     
-$('#pulseAnimation').css('backgroundPosition','-'+left+'px 0px');
- 
-  if (frame < 9){
-   frame++;
-}
-else
-{
-   frame = 1; 
-} 
-*/
-=======
->>>>>>> mongoose
