@@ -31,6 +31,12 @@ socket.on('answer', function (data) {
 socket.on('question', function (data) {
   // stuff that happens after someone gives a new question
   console.log("new question", data);
+
+  current.question = data.question;
+  current.id = data.id;
+  current.timestamp = data.timestamp;
+
+
   // current = data;
   // displayQuestion();
 
@@ -52,8 +58,9 @@ socket.on('question', function (data) {
   $("#submitAnswer").click(function(){
     
     current.answer = $('#currentAnswer').val();
-
+    // emit object with question id id and answer as properties
     socket.emit('answer', current );
+    // reset current question
     current = {};
   });
 
@@ -69,6 +76,7 @@ function pulseAnimation(){
   
   frame = (frame + 1) % 19;
 } 
+<<<<<<< HEAD
 */
 /*
 function pulseAnimation(){
@@ -85,3 +93,5 @@ else
    frame = 1; 
 } 
 */
+=======
+>>>>>>> mongoose
