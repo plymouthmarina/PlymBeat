@@ -54,7 +54,7 @@ socket.on('question', function (data) {
   });
 
 });
-
+/*
 var frame = 1;
   
 function pulseAnimation(){
@@ -73,7 +73,7 @@ function pulseAnimation(){
      frame = 1; 
   }
 } 
-
+*/
 /*
 function pulseAnimation(){
    

@@ -41,9 +41,10 @@ p #main{
 }
 
 #pulseAnimation{
-	background-image:url(assets/skyline_pl.png);
-    width:1253px;
-	height:269px;
+	width:1280px;
+	height:400px;
+	text-align: center;
+	margin: 0 auto;
 }
 
 #history{
@@ -79,4 +80,15 @@ p #main{
 
 #history2 p:nth-child(2){
 	margin-top: 60px;
+}
+
+.path {
+  stroke-dasharray: 2000;
+  -webkit-animation: dash 10s linear infinite;
+}
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 8000;
+  }
 }
