@@ -14,6 +14,7 @@ app.use(express.static(__dirname + '/public'));
 var uristring = process.env.DB_URI || 'mongodb://localhost/plymbeat';
 
 mongoose.connect(uristring, function (err, res) {
+  if (err) console.log('cant connect to mongo at: ' + uristring, err);
   if (err) throw err;
 
   console.log("Successfully connected to " + uristring);
@@ -37,7 +38,6 @@ io.on('connection', function (socket) {
   });
 
   socket.on('question', function(data) {
-    console.log("we have a question");
     console.log(data);
 
     // insert question into database
