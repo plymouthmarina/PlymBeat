@@ -31,6 +31,7 @@ io.on('connection', function (socket) {
   });
 
   socket.on('question', function(data) {
+    console.log("we have a question");
     console.log(data);
 
     // insert question into database
@@ -56,7 +57,7 @@ io.on('connection', function (socket) {
     // inserts answer to question and returns the updated topic
     var query = { id: answer.id };
 
-    Topic.findByIdAndUpdate(answer.id, { 
+    Topic.findOneAndUpdate(query, { 
       $push: { 
         answers: { 
           answer: answer.answer, 

@@ -28,13 +28,19 @@ socket.on('answer', function (data) {
 
   // reset current question
   current = {};
-  // -> hide current answer
+  // -> hide current question
+  $('#currentQuestion').hide();
   // -> show question input field
-
+  $('#questionInput').text('');
+  $('#questionForm').show();
   // -> hide answer input field
+  $('#answerForm').hide();
+  // reset input field to blank
+  $('#currentAnswer').text('');
 
+  // append question + answer to history (w/ unique id)
   $('#history').append(
-    '<div id="history2">' + 
+    '<div id="' + data.answer.id + '">' + 
       '<div id="historyQuestion">' + 
         '<p class = "capital">Q</p>' + 
         '<p>' + data.answer.question + '</p>' + 
@@ -55,8 +61,13 @@ socket.on('question', function (data) {
   current.timestamp = data.timestamp;
 
   // -> show new question
+  $('#currentQuestion').text(current.question).show();
   // -> hide question input
+  $('#questionForm').hide();
+  // reset input field to blank
+  $('#questionInput').text('');
   // -> show answer input
+  $('#answerForm').show();
 
 
   // current = data;
