@@ -9,7 +9,7 @@
 
 body {
 	background-color:#303030;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 }
 
 #main{
@@ -36,7 +36,7 @@ p #main{
 	color: #ffffff;
 	font-size: 16px;
 	border-radius: 4px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Lato', sans-serif;
 
 }
 
@@ -112,4 +112,22 @@ p #main{
   to {
     stroke-dashoffset: 9000;
   }
+}
+
+#downButton{
+	width:80px;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+	margin-top: 30px;
+}
+
+a:hover{
+	cursor: pointer;
+};
+
+#historyWrapper{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
 }
