@@ -11,7 +11,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
-var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/plymbeat';
+var uristring = process.env.DB_URI || 'mongodb://localhost/plymbeat';
 
 mongoose.connect(uristring, function (err, res) {
   if (err) throw err;
