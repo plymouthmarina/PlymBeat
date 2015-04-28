@@ -24,6 +24,12 @@ socket.on('answer', function (data) {
 socket.on('question', function (data) {
   // stuff that happends after someone gives a new question
   console.log("new question", data);
+
+  current.question = data.question;
+  current.id = data.id;
+  current.timestamp = data.timestamp;
+
+
   // current = data;
   // displayQuestion();
 
@@ -46,7 +52,9 @@ socket.on('question', function (data) {
     // $("ol").append("<li>Appended Answer</li>");
     
     current.answer = $('#currentAnswer').val();
+    // emit object with question id id and answer as properties
     socket.emit('answer', current );
+    // reset current question
     current = {};
   });
 
@@ -62,19 +70,3 @@ function pulseAnimation(){
   
   frame = (frame + 1) % 19;
 } 
-
-/*
-function pulseAnimation(){
-   
-  var left = 128 * frame;
-     
-$('#pulseAnimation').css('backgroundPosition','-'+left+'px 0px');
- 
-  if (frame < 9){
-   frame++;
-}
-else
-{
-   frame = 1; 
-} 
-*/

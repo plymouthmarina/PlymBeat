@@ -1,18 +1,17 @@
 var express       = require('express');
 var http          = require('http');
 var mongoose      = require('mongoose');
-
-var port = process.env.PORT || 8080;
+var Topic         = require('./topic');
 
 var app           = express();
 
+var port = process.env.PORT || 8080;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect('mongodb://localhost/plymbeat');
-
 
 app.get('*', function (req, res) {
   res.render('pages/index');
@@ -35,54 +34,47 @@ io.on('connection', function (socket) {
     console.log(data);
 
     // insert question into database
-    var obj = {
-      _id: getNextSequence('topicid'),
+    var doc = new Topic({
+      id: Date.now(),
       question: data.question,
       timestamp: Date.now(),
       answers: []
-    };
+    });
 
-    db.topics.insert(obj);
+    doc.save(function (err) {
+      if (err) throw err;
 
-    socket.emit('question', obj);
-    console.log("question", obj );
+      console.log("Topic saved successfully");
+    });
+
+    socket.emit('question', doc);
   });
 
   socket.on('answer', function(answer) {
     // answer object needs to contain _id & answer
-    var topicsCol = db.collection('topics');
+
     // inserts answer to question and returns the updated topic
-    var topic = db.topics.findAndModify( {
-      query: { _id: answer._id },
-      update: { $push: { answers: { 
-        answer: answer.answer, 
-        timestamp: Date.now() 
-      } } },
-      new: true
+    var query = { id: answer.id };
+
+    Topic.findByIdAndUpdate(answer.id, { 
+      $push: { 
+        answers: { 
+          answer: answer.answer, 
+          timestamp: Date.now() 
+        }
+      }
+    }, function (err, doc) {
+      if (err) throw err;
+
+      console.log("Successfully updated: " + doc.id);
+      socket.emit('answer', doc);
+      console.log("answer:", doc);
+
     });
 
-    socket.emit('answer', { topic: topic});
-    console.log("answer:", topic);
   });
 
   socket.on('error', function (err) {
     console.error(err.stack);
   });
-
 });
-
-function getNextSequence(name) {
-
-  var countersCol = db.collection('counters');
-  console.log(countersCol.find({}));
-
-  var ret = countersCol.findAndModify(
-    {
-      query: { _id: name },
-      update: { $inc: { seq: 1 } },
-      new: true
-    }
-  );
-
-  return ret.seq;
-}

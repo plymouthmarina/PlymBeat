@@ -1,10 +1,16 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var schema = new mongoose.Schema({
+var topicSchema = new Schema({
+  id: { type: Number, index: true },
   question: String,
   timestamp: Date,
-  answer: String
-})
+  answers: [{ answer: String, timestamp: Date }]
+});
+
+var Topic = mongoose.model('Topic', topicSchema);
+
+module.exports = Topic;
 
 /*
 var topic = {
