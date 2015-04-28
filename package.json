@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+    "script": {
+    "start": "node app.js"
+  },
   "repository": {
     "type": "git",
     "url": "http://github.com/plymouthmarina/plymbeat.git"
