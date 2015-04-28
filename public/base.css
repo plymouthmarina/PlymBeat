@@ -47,5 +47,36 @@ p #main{
 }
 
 #history{
-	min-height:300px; 
+	max-width:500px;
+	overflow: auto;
+	max-height: 400px;	
+	margin:0 auto; 
+}
+
+#history2{
+	overflow:hidden;
+	color: #ffffff;
+}
+
+#history2 div {
+	width:100%;
+	min-height:50px;
+	overflow: hidden;
+}
+
+#historyQuestion p{
+	float: left;
+}
+
+
+#historyAnswer p{
+	float: right;
+}
+
+.capital{
+	font-size:40px;
+}
+
+#history2 p:nth-child(2){
+	margin-top: 60px;
 }

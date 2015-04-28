@@ -20,11 +20,11 @@ function displayQuestion () {
 socket.on('answer', function (data) {
   // stuff that happens after someone gives an answer
   console.log("new answer", data);
-
+  $('#history').append('<div id="history2"><div id="historyQuestion"><p class = "capital">Q</p><p>' + data.answer.question + '</p></div><div id="historyAnswer"><p  class = "capital">A</p><p>' + data.answer.answer + '</p></div></div>');
 });
 
 socket.on('question', function (data) {
-  // stuff that happends after someone gives a new question
+  // stuff that happens after someone gives a new question
   console.log("new question", data);
   current = data;
   displayQuestion();
@@ -46,9 +46,9 @@ socket.on('question', function (data) {
   });
 
   $("#submitAnswer").click(function(){
-    // $("ol").append("<li>Appended Answer</li>");
     
     current.answer = $('#currentAnswer').val();
+
     socket.emit('answer', current );
     current = {};
   });
