@@ -4,12 +4,32 @@ $(document).ready(function(e) {
 /****************************************************
 ********      Websocket.io
 *****************************************************/
+
+var randomNum;
+
+setInterval(function(){
+  randomNum = Math.round(Math.random() * 10 ) / 10;
+  console.log(randomNum);
+  if(randomNum <= 0.3){
+    $(".path").attr("class","path fast");
+  }
+  else if(randomNum > 0.3 && randomNum <= 0.6){
+    $(".path").attr("class","path steady");
+  }
+  else {
+    $(".path").attr("class","path slow");
+  };
+}, 5000); 
+
 $('#history').hide();
 
 $("#downButton").on("click", function(){
-    $("#downButton").attr("src","assets/up_button.png");
+    $("#downButton").attr("src","assets/up_button2.png");
     $("#history").slideToggle();
-    $("#downButton").attr("src","assets/down_button2.png");
+
+    $("#downButton").on("click", function(){
+      $("#downButton").attr("src","assets/down_button2.png");
+    });
 });
 
 var socket = io();
@@ -99,6 +119,11 @@ socket.on('question', function (data) {
 
 });
 
+
+var path = document.querySelector('.path');
+var length = path.getTotalLength();
+
+console.log(length); 
 /*
 var frame = 1;
   

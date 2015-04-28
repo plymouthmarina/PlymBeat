@@ -65,8 +65,8 @@ p #main{
 }
 
 #pulseAnimation{
-	width:1280px;
-	height:400px;
+	max-width:1280px;
+	min-width:400px; 
 	text-align: center;
 	margin: 0 auto;
 }
@@ -106,20 +106,40 @@ p #main{
 }
 
 .path {
-  stroke-dasharray: 2000;
-  -webkit-animation: dash 10s linear infinite;
-  -moz-animation: dash 10s linear infinite;
+	stroke-dasharray: 2000;
+	stroke-dashoffset: 4000;
+  	-webkit-animation: dash 10s linear infinite forwards;
+    -moz-animation: dash 10s linear infinite forwards;
 }
+
+.path.fast
+{
+	-webkit-animation: dash 2s linear infinite forwards;
+    -moz-animation: dash 2s linear infinite forwards;
+}
+
+.path.steady
+{
+	-webkit-animation: dash 10s linear infinite forwards;
+    -moz-animation: dash 10s linear infinite forwards;
+}
+
+.path.slow
+{
+	-webkit-animation: dash 20s linear infinite forwards;
+    -moz-animation: dash 20s linear infinite forwards;
+}
+
 
 @-webkit-keyframes dash {
   to {
-    stroke-dashoffset: 9000;
+    stroke-dashoffset: 0; 
   }
 }
 
 @-moz-keyframes dash {
   to {
-    stroke-dashoffset: 9000;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -141,3 +161,4 @@ a:hover{
 	text-align: center;
 	background: #474746 !important;
 }
+
