@@ -11,7 +11,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
-var uristring = process.env.DB_URI || 'mongodb://test:test@ds063769.mongolab.com:63769/plymbeattest';
+var uristring = process.env.DB_URI || 'mongodb://localhost/plymbeat';
 
 mongoose.connect(uristring, function (err, res) {
   if (err) console.log('cant connect to mongo at: ' + uristring, err);
