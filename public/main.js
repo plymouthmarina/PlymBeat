@@ -24,12 +24,16 @@ setInterval(function(){
 $('#history').hide();
 
 $("#downButton").on("click", function(){
-    $("#downButton").attr("src","assets/up_button2.png");
-    $("#history").slideToggle();
 
-    $("#downButton").on("click", function(){
-      $("#downButton").attr("src","assets/down_button2.png");
-    });
+  if($(this).attr("src") === "assets/up_button2.png") {
+    $(this).attr("src","assets/down_button2.png");
+  }
+  else
+  {
+    $(this).attr("src","assets/up_button2.png");
+  }
+    
+    $("#history").slideToggle();
 });
 
 var socket = io();
@@ -61,11 +65,11 @@ socket.on('answer', function (data) {
   // append question + answer to history (w/ unique id)
   $('#history').append(
     '<div id="' + data.answer.id + '">' + 
-      '<div id="historyQuestion">' + 
+      '<div class="historyQuestion">' + 
         '<p class = "capital">Q</p>' + 
         '<p>' + data.answer.question + '</p>' + 
       '</div>' +
-      '<div id="historyAnswer">' +
+      '<div class="historyAnswer">' +
         '<p  class = "capital">A</p>' +
         '<p>' + data.answer.answer + '</p>' +
       '</div>' +
@@ -119,11 +123,6 @@ socket.on('question', function (data) {
 
 });
 
-
-var path = document.querySelector('.path');
-var length = path.getTotalLength();
-
-console.log(length); 
 /*
 var frame = 1;
   
