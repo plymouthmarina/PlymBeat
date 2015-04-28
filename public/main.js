@@ -5,9 +5,7 @@ $(document).ready(function(e) {
 ********      Websocket.io
 *****************************************************/
 
-
 var socket = io();
-
 
 function displayQuestion () {
   console.log(current.question);
@@ -26,15 +24,14 @@ socket.on('answer', function (data) {
 socket.on('question', function (data) {
   // stuff that happends after someone gives a new question
   console.log("new question", data);
-  current = data;
-  displayQuestion();
+  // current = data;
+  // displayQuestion();
 
 });
 
 /*****************************************************
 ********      GRAPH ANIMATION
 *****************************************************/
-
 
   var pulseInterval;
 
@@ -63,15 +60,7 @@ function pulseAnimation(){
      
   $('#pulseAnimation').css('backgroundPosition', '0px ' + '-'+ top + 'px');
   
-  // frame = ++frame % 19;
-
-  if (frame < 19){
-     // frame++;
-  }
-  else
-  {
-     frame = 1; 
-  }
+  frame = (frame + 1) % 19;
 } 
 
 /*
