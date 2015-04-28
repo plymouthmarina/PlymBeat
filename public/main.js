@@ -91,7 +91,7 @@ socket.on('question', function (data) {
   $("#submitAnswer").click(function(){
     
     current.answer = $('#currentAnswer').val();
-    // emit object with question id id and answer as properties
+    // emit object with question id and answer as properties
     socket.emit('answer', current );
     // reset current question
     current = {};
