@@ -4,6 +4,13 @@ $(document).ready(function(e) {
 /****************************************************
 ********      Websocket.io
 *****************************************************/
+$('#history').hide();
+
+$("#downButton").on("click", function(){
+    $("#downButton").attr("src","assets/up_button.png");
+    $("#history").slideToggle();
+    $("#downButton").attr("src","assets/down_button2.png");
+});
 
 var socket = io();
 
