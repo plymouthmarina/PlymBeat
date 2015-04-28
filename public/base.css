@@ -28,24 +28,88 @@ p #main{
 	font-size:40px;
 }
 
-#currentAnswer{
+.input{
 	width:400px;
 	height:30px;
 	margin-top:50px;
+	background-color:#303030;
+	color: #ffffff;
+	font-size: 16px;
+	border-radius: 4px;
+	font-family: 'Roboto', sans-serif;
+
+}
+
+#questionInput{
+}
+
+#currentAnswer{
 }
 
 #logo{
 	position:relative;
 	top:50px;
 	left:30px;
+	width:150px;
 }
 
 #pulseAnimation{
-	background-image:url(assets/skyline_pl.png);
-    width:1253px;
-	height:269px;
+	width:1280px;
+	height:400px;
+	text-align: center;
+	margin: 0 auto;
 }
 
 #history{
-	min-height:300px; 
+	max-width:500px;
+	overflow: auto;
+	max-height: 400px;	
+	margin:0 auto; 
+}
+
+#history2{
+	overflow:hidden;
+	color: #ffffff;
+}
+
+#history2 div {
+	width:100%;
+	min-height:50px;
+	overflow: hidden;
+}
+
+#historyQuestion p{
+	float: left;
+}
+
+
+#historyAnswer p{
+	float: right;
+}
+
+.capital{
+	font-size:40px;
+}
+
+#history2 p:nth-child(2){
+	margin-top: 60px;
+}
+
+.path {
+  stroke-dasharray: 2000;
+  -webkit-animation: dash 10s linear infinite;
+  -moz-animation: dash 10s linear infinite;
+  
+}
+
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 9000;
+  }
+}
+
+@-moz-keyframes dash {
+  to {
+    stroke-dashoffset: 9000;
+  }
 }
