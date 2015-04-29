@@ -26,8 +26,15 @@ p #main{
 }
 
 #currentQuestion{
+	display: none;
 	margin:50px 0 auto;
 	font-size:40px;
+}
+
+#questionForm, 
+#answerForm,
+#desc {
+	display: none;
 }
 
 .input{
@@ -140,4 +147,9 @@ a:hover{
 	margin: 0 auto;
 	text-align: center;
 	background: #474746 !important;
+}
+
+.loader {
+	width: 150px;
+	height: 150px;
 }

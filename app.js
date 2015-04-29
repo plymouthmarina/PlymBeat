@@ -33,6 +33,12 @@ var io = require('socket.io').listen(server);
 io.on('connection', function (socket) {
   console.log('a user connected');
 
+  socket.on('initialise', function() {
+    Topic.find({}).sort({id: -1}).limit(10).exec(function (err, docs) {
+        socket.emit('initialise', docs);
+      });
+  });
+
   socket.on('disconnect', function() {
     console.log('a user disconnected');
   });
@@ -54,7 +60,7 @@ io.on('connection', function (socket) {
       console.log("Topic saved successfully");
     });
 
-    socket.emit('question', doc);
+    io.emit('question', doc);
   });
 
   socket.on('answer', function(answer) {
@@ -69,12 +75,12 @@ io.on('connection', function (socket) {
           answer: answer.answer, 
           timestamp: Date.now() 
         }
-      }
-    }, function (err, doc) {
+      }, 
+    }, { new: true }, function (err, doc) {
       if (err) throw err;
 
       console.log("Successfully updated: " + doc.id);
-      socket.emit('answer', doc);
+      io.emit('answer', doc);
       console.log("answer:", doc);
 
     });
