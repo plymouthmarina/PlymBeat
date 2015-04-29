@@ -181,11 +181,11 @@ socket.on('question', function (data) {
 function addToHistory (topic) {
   $('#history').prepend(
     '<div id="' + topic.id + '">' + 
-      '<div id="historyQuestion">' + 
+      '<div class="historyQuestion" cl>' + 
         '<p class = "capital">Q</p>' + 
         '<p>' + topic.question + '</p>' + 
       '</div>' +
-      '<div id="historyAnswer">' +
+      '<div class="historyAnswer">' +
         '<p  class = "capital">A</p>' +
         '<p>' + topic.answers[0].answer + '</p>' +
       '</div>' +
