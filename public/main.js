@@ -71,12 +71,35 @@ socket.on('initialise', function (data) {
 
 });
 
+var randomNum;
+
+setInterval(function(){
+  randomNum = Math.round(Math.random() * 10 ) / 10;
+  console.log(randomNum);
+  if(randomNum <= 0.3){
+    $(".path").attr("class","path fast");
+  }
+  else if(randomNum > 0.3 && randomNum <= 0.6){
+    $(".path").attr("class","path steady");
+  }
+  else {
+    $(".path").attr("class","path slow");
+  };
+}, 5000); 
+
 $('#history').hide();
 
 $("#downButton").on("click", function(){
-    $("#downButton").attr("src","assets/up_button.png");
+
+  if($(this).attr("src") === "assets/up_button2.png") {
+    $(this).attr("src","assets/down_button2.png");
+  }
+  else
+  {
+    $(this).attr("src","assets/up_button2.png");
+  }
+    
     $("#history").slideToggle();
-    $("#downButton").attr("src","assets/down_button2.png");
 });
 
 

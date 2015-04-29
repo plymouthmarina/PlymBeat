@@ -11,11 +11,16 @@ body {
 	font-family: 'Lato', sans-serif;
 	background-image: url(assets/background.jpg);
 	background-repeat:no-repeat;
-	background-size:cover;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+#Layer_1{
+	width: 100%;
 }
 
 #main{
-	margin-top:150px;
+	margin-top:90px;
 	font-size:20px;
 	color:#FFFFFF;
 	text-align:center;
@@ -40,7 +45,7 @@ p #main{
 .input{
 	width:600px;
 	height:50px;
-	margin-top:50px;
+	margin-top:30px;
 	background-color:#303030;
 	color: #ffffff;
 	font-size: 16px;
@@ -60,20 +65,20 @@ p #main{
 	position: absolute;
 	width:40px;
 	right: 10px;
-	top: 58px;
+	top: 37px;
 	overflow: hidden;
 }
 
 #logo{
 	position:relative;
-	top:50px;
-	left:30px;
+	top:40px;
+	left:40px;
 	width:150px;
 }
 
 #pulseAnimation{
-	width:1280px;
-	height:400px;
+	max-width:1280px;
+	min-width:400px; 
 	text-align: center;
 	margin: 0 auto;
 }
@@ -83,24 +88,21 @@ p #main{
 	overflow: auto;
 	max-height: 400px;	
 	margin:0 auto; 
+	padding-right: 120px;
 }
 
-#history2{
-	overflow:hidden;
-	color: #ffffff;
-}
-
-#history2 div {
+.historyQuestion, .historyAnswer {
 	width:100%;
 	min-height:50px;
 	overflow: hidden;
+	color: #ffffff;
 }
 
-#historyQuestion p{
+.historyQuestion p{
 	float: left;
 }
 
-#historyAnswer p{
+.historyAnswer p{
 	float: right;
 }
 
@@ -108,26 +110,36 @@ p #main{
 	font-size:40px;
 }
 
-#history2 p:nth-child(2){
-	margin-top: 60px;
-}
-
 .path {
-  stroke-dasharray: 2000;
-  -webkit-animation: dash 10s linear infinite;
-  -moz-animation: dash 10s linear infinite;
+	stroke-dasharray: 2000;
+	stroke-dashoffset: 4000;
+  	-webkit-animation: dash 10s linear infinite forwards;
+    -moz-animation: dash 10s linear infinite forwards;
 }
 
-@-webkit-keyframes dash {
-  to {
-    stroke-dashoffset: 9000;
-  }
+.path.fast
+{
+	-webkit-animation: dash 2s linear infinite forwards;
+    -moz-animation: dash 2s linear infinite forwards;
 }
 
-@-moz-keyframes dash {
-  to {
-    stroke-dashoffset: 9000;
-  }
+.path.steady
+{
+	-webkit-animation: dash 10s linear infinite forwards;
+    -moz-animation: dash 10s linear infinite forwards;
+}
+
+.path.slow
+{
+	-webkit-animation: dash 20s linear infinite forwards;
+    -moz-animation: dash 20s linear infinite forwards;
+}
+
+#historyWrapper{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	background: rgba(71, 71, 70, 0.7);
 }
 
 #downButton{
@@ -135,18 +147,23 @@ p #main{
 	text-align: center;
 	margin: 0 auto;
 	display: block;
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
 a:hover{
 	cursor: pointer;
-};
+}
 
-#historyWrapper{
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-	background: #474746 !important;
+@-webkit-keyframes dash {
+  to {
+    stroke-dashoffset: 0; 
+  }
+}
+
+@-moz-keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .loader {
