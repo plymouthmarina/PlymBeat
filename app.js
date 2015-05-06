@@ -34,7 +34,7 @@ io.on('connection', function (socket) {
   console.log('a user connected');
 
   socket.on('initialise', function() {
-    Topic.find({}).sort({id: -1}).limit(10).exec(function (err, docs) {
+    Topic.find({}).sort({id: 1}).limit(10).exec(function (err, docs) {
         socket.emit('initialise', docs);
       });
   });

@@ -1,18 +1,14 @@
 var current = {};
 
+var timestamps = [];
+
 $(document).ready(function(e) {
-/****************************************************
-********      Websocket.io
-*****************************************************/
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(init);
 } /* else show error message on page*/
 
-// top right 50.442804, -4.016016
-// bottom left 50.355704, -4.221323
 var socket = io();
-
 
 var plymBounds = {
   maxLat: 50.442804,
@@ -62,30 +58,12 @@ socket.on('initialise', function (data) {
     // append remaining to history
     for (var i = 1; i < data.length; i++) {
       addToHistory(data[i]);
+      timestamps.push(data[i].timestamp);
     }
   }
 
-  // [0] == current
-  // rest goes into history
-
-
+  calcPulseSpeed();
 });
-
-var randomNum;
-
-setInterval(function(){
-  randomNum = Math.round(Math.random() * 10 ) / 10;
-  console.log(randomNum);
-  if(randomNum <= 0.3){
-    $(".path").attr("class","path fast");
-  }
-  else if(randomNum > 0.3 && randomNum <= 0.6){
-    $(".path").attr("class","path steady");
-  }
-  else {
-    $(".path").attr("class","path slow");
-  };
-}, 5000); 
 
 $('#history').hide();
 
@@ -94,18 +72,11 @@ $("#downButton").on("click", function(){
   if($(this).attr("src") === "assets/up_button2.png") {
     $(this).attr("src","assets/down_button2.png");
   }
-  else
-  {
+  else {
     $(this).attr("src","assets/up_button2.png");
   }
-    
-    $("#history").slideToggle();
+  $("#history").slideToggle();
 });
-
-
-
-// socket.emit('answer', { answer: 'This is the answer'});
-// socket.emit('question', { question: 'What is the answer of life?' });
 
 socket.on('answer', function (data) {
   // stuff that happens after someone gives an answer
@@ -135,6 +106,8 @@ socket.on('question', function (data) {
   current.id = data.id;
   current.timestamp = data.timestamp;
 
+  timestamps.push(data.timestamp);
+
   // -> show new question
   $('#currentQuestion').val(current.question).show();
   // -> hide question input
@@ -144,22 +117,12 @@ socket.on('question', function (data) {
   // -> show answer input
   $('#answerForm').show();
 
-
-  // current = data;
-  // displayQuestion();
-
+  calcPulseSpeed();
 });
-
-
-
-
-/*****************************************************
-********      GRAPH ANIMATION
-*****************************************************/
 
   var pulseInterval;
 
-  // pulseInterval = setInterval(pulseAnimation,100);
+  pulseInterval = setInterval(pulseAnimation,100);
 
   $("#submitQuestion").click(function () {
     var question = $('#questionInput').val();
@@ -178,6 +141,36 @@ socket.on('question', function (data) {
 
 });
 
+function calcPulseSpeed() {
+  console.log('start check');
+
+  var n = 0;
+
+  for (var i = 0; i < timestamps.length; i++) {
+    console.log('timestamp', i);
+    var now = new Date();
+
+    if ((Math.abs(now.getTime() - new Date(timestamps[i]).getTime())) < (10 * 60000)) {
+      console.log("more recent!");
+      n++;
+    }
+  }
+
+  console.log("questions in last 5 mins: " + n);
+
+  if (n <= 3) {
+    $(".path").attr("class","path slow");
+    console.log('slow speed');
+  } else if (n > 3 && n <= 6) {
+    console.log('steady speed');
+    $(".path").attr("class","path steady");
+  } else if (n > 6) {
+    console.log('fast speed');
+    $(".path").attr("class","path fast");
+  }
+  
+}
+
 function addToHistory (topic) {
   $('#history').prepend(
     '<div id="' + topic.id + '">' + 
@@ -191,16 +184,3 @@ function addToHistory (topic) {
       '</div>' +
     '</div>');
 }
-
-/*
-var frame = 1;
-  
-function pulseAnimation(){
-   
-  var top = 269 * frame;
-     
-  $('#pulseAnimation').css('backgroundPosition', '0px ' + '-'+ top + 'px');
-  
-  frame = (frame + 1) % 19;
-} 
-*/
